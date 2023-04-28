@@ -9,7 +9,7 @@
       "request": "launch",
       "userDataDir": false,
       "name": "针对 localhost 启动 Chrome",
-      "url": "http://localhost:5173",
+      "url": "http://localhost:3332",
       "webRoot": "${workspaceFolder}"
     }
   ]

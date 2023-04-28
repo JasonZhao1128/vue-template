@@ -1,13 +1,72 @@
 <script setup>
+// import { computed } from 'vue'
+// import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSettingsStore } from '@/stores/modules/settings'
 import SidebarLogo from './SidebarLogo.vue'
 const settingsStore = useSettingsStore()
+// import { getCssVariableValue } from '@/utils'
+// const route = useRoute()
+// const v3SidebarMenuBgColor = getCssVariableValue('--v3-sidebar-menu-bg-color')
+// const v3SidebarMenuTextColor = getCssVariableValue('--v3-sidebar-menu-text-color')
+// const v3SidebarMenuActiveTextColor = getCssVariableValue('--v3-sidebar-menu-active-text-color')
+// const activeMenu = computed(() => {
+//     const { meta, path } = route
+//     if (meta?.activeMenu) {
+//         return meta.activeMenu
+//     }
+//     return path
+// })
 const { showSidebarLogo } = storeToRefs(settingsStore)
 </script>
 
 <template>
-    <div v-if="showSidebarLogo">
-        <SidebarLogo :collapse="false"></SidebarLogo>
+    <div :class="{ 'has-logo': showSidebarLogo }">
+        <SidebarLogo v-if="showSidebarLogo" :collapse="false"></SidebarLogo>
+        <el-scrollbar wrap-class="scrollbar-wrapper">
+            <!-- <el-menu
+                :default-active="activeMenu"
+                :collapse="isCollapse"
+                :background-color="v3SidebarMenuBgColor"
+                :text-color="v3SidebarMenuTextColor"
+                :active-text-color="v3SidebarMenuActiveTextColor"
+                :unique-opened="true"
+                :collapse-transition="false"
+                mode="vertical"
+            >
+                <SidebarItem
+                    v-for="route in permissionStore.routes"
+                    :key="route.path"
+                    :item="route"
+                    :base-path="route.path"
+                    :is-collapse="isCollapse"
+                />
+            </el-menu> -->
+        </el-scrollbar>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.has-logo {
+    .el-scrollbar {
+        height: calc(100% - var(--v3-header-height));
+    }
+}
+.el-scrollbar {
+    height: 100%;
+    :deep(.scrollbar-wrapper) {
+        // 限制水平宽度
+        overflow-x: hidden !important;
+        .el-scrollbar__view {
+            height: 100%;
+        }
+    }
+    // 滚动条
+    :deep(.el-scrollbar__bar) {
+        &.is-horizontal {
+            // 隐藏水平滚动条
+            display: none;
+        }
+    }
+}
+</style>
