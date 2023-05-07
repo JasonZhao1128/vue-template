@@ -1,15 +1,28 @@
+// core
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import store from '@/stores'
 import App from './App.vue'
 import router from './router'
+// css
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/index.scss'
-import 'normalize.css'
+// import 'normalize.css'
+import '@unocss/reset/normalize.css'
+import 'virtual:uno.css'
+// load
+import { loadSvg } from '@/icons'
+import { loadPlugins } from '@/plugins'
 
 const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
+// 加载全局 SVG
+loadSvg(app)
+// 加载插件
+loadPlugins(app)
 
-app.mount('#app')
+app.use(store)
+app.use(router)
+router.isReady().then(() => {
+    app.mount('#app')
+})

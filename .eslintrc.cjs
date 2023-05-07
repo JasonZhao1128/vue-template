@@ -15,8 +15,9 @@ module.exports = {
         'vue/multi-word-component-names': [
             'error',
             {
-                ignores: ['index']
+                ignores: ['index', '404']
             }
-        ]
+        ],
+        'no-debugger': [1]
     }
 }
