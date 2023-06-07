@@ -8,12 +8,15 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 import UnoCSS from 'unocss/vite'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         vue(),
         UnoCSS(),
+        /** DefineOptions 可以更简单的注册组件名称 */
+        DefineOptions(),
         eslintPlugin(),
         AutoImport({
             dts: false,

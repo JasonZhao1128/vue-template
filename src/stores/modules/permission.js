@@ -1,22 +1,24 @@
 import { ref } from 'vue'
-// import store from '@/stores'
 import { defineStore } from 'pinia'
 import { constantRoutes, asyncRoutes } from '@/router/index.js'
 import asyncRouteSettings from '@/config/async-route.js'
 
-const hasPermission = (roles, route) => {
-    return route?.meta?.roles?.some(role => roles.includes(role)) ?? false
-}
+// const hasPermission = (roles, route) => {
+//     return route?.meta?.roles?.some(role => roles.includes(role)) ?? false
+// }
 const filterAsyncRoutes = (routes, roles) => {
-    return routes.filter(route => {
-        if (hasPermission(roles, route)) {
-            if (route.children) {
-                route.children = filterAsyncRoutes(route.children, roles)
+    const result = []
+    if (!routes) return null
+    for (const route of routes) {
+        if (route.meta.roles && route.meta.roles.some(item => roles.includes(item))) {
+            if (route?.children && route.children.length > 0) {
+                result.push({ ...route, children: filterAsyncRoutes(route.children, roles) })
+            } else {
+                result.push({ ...route })
             }
-            return true
         }
-        return false
-    })
+    }
+    return result
 }
 
 export const usePermissionStore = defineStore('permission', () => {

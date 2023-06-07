@@ -3,19 +3,23 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSettingsStore } from '@/stores/modules/settings'
+import { useAppStore } from '@/stores/modules/app'
 import { usePermissionStore } from '@/stores/modules/permission'
 import SidebarLogo from './SidebarLogo.vue'
 import SidebarItem from './SidebarItem.vue'
 import { getCssVariableValue } from '@/utils'
 
+const route = useRoute()
+
 const settingsStore = useSettingsStore()
 const permissionStore = usePermissionStore()
+const appStore = useAppStore()
 permissionStore.setRoutes(['admin'])
-const route = useRoute()
 
 const v3SidebarMenuBgColor = getCssVariableValue('--v3-sidebar-menu-bg-color')
 const v3SidebarMenuTextColor = getCssVariableValue('--v3-sidebar-menu-text-color')
 const v3SidebarMenuActiveTextColor = getCssVariableValue('--v3-sidebar-menu-active-text-color')
+const { showSidebarLogo } = storeToRefs(settingsStore)
 
 const activeMenu = computed(() => {
     const { meta, path } = route
@@ -24,15 +28,19 @@ const activeMenu = computed(() => {
     }
     return path
 })
-const { showSidebarLogo } = storeToRefs(settingsStore)
+
+const isCollapse = computed(() => {
+    return !appStore.sidebar.opened
+})
 </script>
 
 <template>
     <div :class="{ 'has-logo': showSidebarLogo }">
-        <SidebarLogo v-if="showSidebarLogo" :collapse="false"></SidebarLogo>
+        <SidebarLogo v-if="showSidebarLogo" :collapse="isCollapse"></SidebarLogo>
         <el-scrollbar wrap-class="scrollbar-wrapper">
             <el-menu
                 :default-active="activeMenu"
+                :collapse="isCollapse"
                 :background-color="v3SidebarMenuBgColor"
                 :text-color="v3SidebarMenuTextColor"
                 :active-text-color="v3SidebarMenuActiveTextColor"
@@ -45,6 +53,7 @@ const { showSidebarLogo } = storeToRefs(settingsStore)
                     :key="route.path"
                     :item="route"
                     :base-path="route.path"
+                    :is-collapse="isCollapse"
                 />
             </el-menu>
         </el-scrollbar>

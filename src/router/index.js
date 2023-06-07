@@ -43,7 +43,8 @@ export const constantRoutes = [
                 meta: {
                     title: '首页',
                     svgIcon: 'dashboard',
-                    affix: true
+                    affix: true,
+                    keepAlive: true
                 }
             }
         ]
@@ -98,6 +99,39 @@ export const constantRoutes = [
  * 用来放置有权限 (Roles 属性) 的路由
  * 必须带有 Name 属性
  */
+// const arr = [
+//     {
+//         name: 'Permission',
+//         meta: { title: '权限管理', svgIcon: 'lock', roles: ['admin', 'editor'], alwaysShow: false },
+//         children: [
+//             { name: 'PagePermission', meta: { title: '页面权限', roles: ['admin'] } },
+//             { name: 'PagePermission1', meta: { title: '页面权限1' } }
+//         ]
+//     },
+//     {
+//         name: 'Permission1',
+//         meta: { title: '权限管理1', svgIcon: 'lock', roles: ['admin'], alwaysShow: false }
+//     },
+//     { name: 'Permission2', meta: { title: '权限管理2', svgIcon: 'lock', alwaysShow: false } },
+//     {
+//         name: 'Permission1',
+//         meta: { title: '权限管理1', svgIcon: 'lock', roles: ['admin'], alwaysShow: false }
+//     }
+// ]
+
+// const filteredArr = arr.filter(item => {
+//     if (item.meta.roles && item.meta.roles.some(role => role === 'admin')) {
+//         return true
+//     }
+//     if (item.children) {
+//         const filteredChildren = item.children.filter(child => {
+//             return child.meta.roles && child.meta.roles.some(role => role === 'admin')
+//         })
+//         return filteredChildren.length > 0
+//     }
+//     return false
+// })
+// console.log(filteredArr)
 export const asyncRoutes = [
     {
         path: '/permission',
@@ -116,6 +150,7 @@ export const asyncRoutes = [
                 component: () => import('@/views/permission/page.vue'),
                 name: 'PagePermission',
                 meta: {
+                    svgIcon: 'lock',
                     title: '页面权限',
                     roles: ['admin'] // 或者在子导航中设置角色
                 }
@@ -143,4 +178,5 @@ const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: constantRoutes
 })
+
 export default router

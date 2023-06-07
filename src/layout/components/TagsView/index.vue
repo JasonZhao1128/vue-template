@@ -27,8 +27,6 @@ watch(
     }
 )
 onMounted(() => {
-    // initTags()
-    console.log('==>', tagsViewStore.visitedViews)
     addTags()
 })
 </script>

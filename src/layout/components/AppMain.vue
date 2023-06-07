@@ -1,20 +1,22 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute, RouterView } from 'vue-router'
-// import { useTagsViewStore } from '@/stores/modules/tags-view'
+import { useTagsViewStore } from '@/stores/modules/tags-view'
 const route = useRoute()
-// const tagsViewStore = useTagsViewStore()
-
-const key = computed(() => route.path)
+const tagsViewStore = useTagsViewStore()
+const key = computed(() => {
+    console.log(route.path, tagsViewStore.cachedViews)
+    return route.path
+})
 </script>
 
 <template>
     <section class="app-main">
         <router-view #default="{ Component }">
             <transition name="fade-transform" mode="out-in">
-                <!-- <keep-alive :include="tagsViewStore.cachedViews"> -->
-                <component :is="Component" :key="key" />
-                <!-- </keep-alive> -->
+                <keep-alive :include="tagsViewStore.cachedViews">
+                    <component :is="Component" :key="key" />
+                </keep-alive>
             </transition>
         </router-view>
     </section>

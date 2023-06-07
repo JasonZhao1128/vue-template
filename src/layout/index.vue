@@ -1,17 +1,37 @@
 <script setup>
 import { computed } from 'vue'
+import { useAppStore, DeviceType } from '@/stores/modules/app'
 import { AppMain, Sidebar, NavigationBar, TagsView } from './components/index'
 import { useSettingsStore } from '@/stores/modules/settings'
 const settingsStore = useSettingsStore()
+const appStore = useAppStore()
+const classObj = computed(() => {
+    return {
+        hideSidebar: !appStore.sidebar.opened,
+        openSidebar: appStore.sidebar.opened,
+        withoutAnimation: appStore.sidebar.withoutAnimation,
+        mobile: appStore.device === DeviceType.Mobile
+        // showGreyMode: showGreyMode.value,
+        // showColorWeakness: showColorWeakness.value
+    }
+})
 const showTagsView = computed(() => {
     return settingsStore.showTagsView
 })
 const fixedHeader = computed(() => {
     return settingsStore.fixedHeader
 })
+const handleClickOutside = () => {
+    appStore.closeSidebar(false)
+}
 </script>
 <template>
-    <div class="app-wrapper">
+    <div :class="classObj" class="app-wrapper">
+        <div
+            v-if="classObj.mobile && classObj.openSidebar"
+            class="drawer-bg"
+            @click="handleClickOutside"
+        ></div>
         <Sidebar class="sidebar-container" />
         <div :class="{ hasTagsView: showTagsView }" class="main-container">
             <div :class="{ 'fixed-header': fixedHeader }">

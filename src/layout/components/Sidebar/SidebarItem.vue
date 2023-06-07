@@ -21,12 +21,8 @@ const props = defineProps({
         default: true
     }
 })
-const alwaysShowRootMenu = computed(() => {
-    return props.item.meta && props.item.meta.alwaysShow
-})
+const alwaysShowRootMenu = computed(() => props.item?.meta?.alwaysShow)
 const showingChildNumber = computed(() => {
-    console.log('props.item.children=>', props.item.children)
-    console.log('props.item=>', props.item)
     return props.item?.children?.filter(item => !item.meta?.hidden)?.length || 0
 })
 
@@ -110,5 +106,18 @@ const resolvePath = routePath => {
     width: 1em;
     margin-right: 12px;
     font-size: 18px;
+}
+
+.simple-mode {
+    &.first-level {
+        :deep(.el-sub-menu) {
+            .el-sub-menu__icon-arrow {
+                display: none;
+            }
+            span {
+                visibility: hidden;
+            }
+        }
+    }
 }
 </style>

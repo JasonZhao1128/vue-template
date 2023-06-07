@@ -7,7 +7,7 @@ import router from './router'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/index.scss'
-// import 'normalize.css'
+import 'normalize.css'
 import '@unocss/reset/normalize.css'
 import 'virtual:uno.css'
 // load
