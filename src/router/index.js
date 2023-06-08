@@ -66,6 +66,214 @@ export const constantRoutes = [
         ]
     },
     {
+        path: '/unocss1',
+        component: Layout,
+        redirect: '/unocss1/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS1',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss2',
+        component: Layout,
+        redirect: '/unocss2/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS2',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss3',
+        component: Layout,
+        redirect: '/unocss3/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS3',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss4',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS4',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss5',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS5',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss6',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS6',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss7',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS7',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss8',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS8',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss9',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS9',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss10',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS10',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss11',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS11',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss12',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index12',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS12',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
+        path: '/unocss13',
+        component: Layout,
+        redirect: '/unocss/index',
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/dashboard/index.vue'),
+                name: 'UnoCSS13',
+                meta: {
+                    title: 'unocss',
+                    elIcon: 'Search'
+                }
+            }
+        ]
+    },
+    {
         path: '/link',
         meta: {
             title: '外链',
@@ -76,7 +284,7 @@ export const constantRoutes = [
         children: [
             {
                 path: 'index1',
-                component: () => import('@/views/unocss/index.vue'),
+                component: () => import('@/views/dashboard/index.vue'),
                 meta: {
                     title: '外链1',
                     svgIcon: 'link'
@@ -84,7 +292,7 @@ export const constantRoutes = [
             },
             {
                 path: 'index2',
-                component: () => import('@/views/unocss/index.vue'),
+                component: () => import('@/views/dashboard/index.vue'),
                 meta: {
                     title: '外链2',
                     svgIcon: 'link'
@@ -99,39 +307,6 @@ export const constantRoutes = [
  * 用来放置有权限 (Roles 属性) 的路由
  * 必须带有 Name 属性
  */
-// const arr = [
-//     {
-//         name: 'Permission',
-//         meta: { title: '权限管理', svgIcon: 'lock', roles: ['admin', 'editor'], alwaysShow: false },
-//         children: [
-//             { name: 'PagePermission', meta: { title: '页面权限', roles: ['admin'] } },
-//             { name: 'PagePermission1', meta: { title: '页面权限1' } }
-//         ]
-//     },
-//     {
-//         name: 'Permission1',
-//         meta: { title: '权限管理1', svgIcon: 'lock', roles: ['admin'], alwaysShow: false }
-//     },
-//     { name: 'Permission2', meta: { title: '权限管理2', svgIcon: 'lock', alwaysShow: false } },
-//     {
-//         name: 'Permission1',
-//         meta: { title: '权限管理1', svgIcon: 'lock', roles: ['admin'], alwaysShow: false }
-//     }
-// ]
-
-// const filteredArr = arr.filter(item => {
-//     if (item.meta.roles && item.meta.roles.some(role => role === 'admin')) {
-//         return true
-//     }
-//     if (item.children) {
-//         const filteredChildren = item.children.filter(child => {
-//             return child.meta.roles && child.meta.roles.some(role => role === 'admin')
-//         })
-//         return filteredChildren.length > 0
-//     }
-//     return false
-// })
-// console.log(filteredArr)
 export const asyncRoutes = [
     {
         path: '/permission',
@@ -160,7 +335,8 @@ export const asyncRoutes = [
                 component: () => import('@/views/permission/directive.vue'),
                 name: 'DirectivePermission',
                 meta: {
-                    title: '指令权限' // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
+                    title: '指令权限', // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
+                    roles: ['admin']
                 }
             }
         ]

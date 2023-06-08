@@ -4,11 +4,26 @@ defineOptions({
     name: 'Dashboard'
 })
 const count = ref(0)
+const test = ref([])
+const con = ref([
+    {
+        to: '/about1',
+        key: '1'
+    },
+    {
+        to: '/about2',
+        key: '2'
+    }
+])
+const btn = () => {
+    console.log(test.value)
+}
 </script>
 <template>
     <div>
         <div>
-            <button @click="count++">{{ count }}</button>
+            <button @click="btn">{{ count }}</button>
+            <h1 v-for="item in con" ref="test" :key="item.key">{{ item.to }}</h1>
         </div>
     </div>
 </template>

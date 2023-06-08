@@ -1,9 +1,13 @@
 <script setup>
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, ref } from 'vue'
+import ScrollPane from '@/layout/components/TagsView/ScrollPane.vue'
 import { useTagsViewStore } from '@/stores/modules/tags-view'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const tagsViewStore = useTagsViewStore()
+
+const tagRefs = ref([])
+
 const addTags = () => {
     if (route.name) {
         tagsViewStore.addVisitedView(route)
