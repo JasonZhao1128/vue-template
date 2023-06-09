@@ -1,6 +1,10 @@
 <script setup>
-import { ref, watch, nextTick } from 'vue'
+import { ref, watch, nextTick, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useSettingsStore } from '@/stores/modules/settings'
+import Screenfull from '@/components/Screenfull/index.vue'
+
+const settingsStore = useSettingsStore()
 const props = defineProps({
     tagRefs: {
         type: Object,
@@ -22,7 +26,8 @@ const scroll = ({ scrollLeft }) => {
 }
 /** 鼠标滚轮滚动时触发 */
 const wheelScroll = ({ deltaY }) => {
-    if (/^-/.test(deltaY.toString())) {
+    console.log(deltaY)
+    if (deltaY.toString().startsWith('-')) {
         scrollTo('left')
     } else {
         scrollTo('right')
@@ -86,6 +91,9 @@ watch(
         deep: true
     }
 )
+const showScreenfull = computed(() => {
+    return settingsStore.showScreenfull
+})
 </script>
 <template>
     <div class="scroll-container">
@@ -100,12 +108,12 @@ watch(
         <el-icon class="arrow right" @click="scrollTo('right')">
             <ArrowRight />
         </el-icon>
-        <!-- <Screenfull
+        <Screenfull
             v-if="showScreenfull"
             element=".app-main"
             openTips="内容区全屏"
             class="screenfull"
-        /> -->
+        />
     </div>
 </template>
 <style lang="scss" scoped>

@@ -45,7 +45,6 @@ const isCollapse = computed(() => {
                 :text-color="v3SidebarMenuTextColor"
                 :active-text-color="v3SidebarMenuActiveTextColor"
                 :unique-opened="true"
-                :collapse-transition="false"
                 mode="vertical"
             >
                 <SidebarItem

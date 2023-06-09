@@ -3,6 +3,10 @@ import { computed } from 'vue'
 import { useAppStore, DeviceType } from '@/stores/modules/app'
 import { AppMain, Sidebar, NavigationBar, TagsView } from './components/index'
 import { useSettingsStore } from '@/stores/modules/settings'
+import useResize from './hooks/useResize'
+/** Layout 布局响应式 */
+useResize()
+
 const settingsStore = useSettingsStore()
 const appStore = useAppStore()
 const classObj = computed(() => {
@@ -10,9 +14,9 @@ const classObj = computed(() => {
         hideSidebar: !appStore.sidebar.opened,
         openSidebar: appStore.sidebar.opened,
         withoutAnimation: appStore.sidebar.withoutAnimation,
-        mobile: appStore.device === DeviceType.Mobile
-        // showGreyMode: showGreyMode.value,
-        // showColorWeakness: showColorWeakness.value
+        mobile: appStore.device === DeviceType.Mobile,
+        showGreyMode: showGreyMode.value,
+        showColorWeakness: showColorWeakness.value
     }
 })
 const showTagsView = computed(() => {
@@ -20,6 +24,12 @@ const showTagsView = computed(() => {
 })
 const fixedHeader = computed(() => {
     return settingsStore.fixedHeader
+})
+const showGreyMode = computed(() => {
+    return settingsStore.showGreyMode
+})
+const showColorWeakness = computed(() => {
+    return settingsStore.showColorWeakness
 })
 const handleClickOutside = () => {
     appStore.closeSidebar(false)
