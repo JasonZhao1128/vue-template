@@ -1,16 +1,25 @@
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { reactive, computed } from 'vue'
 import { Breadcrumb, Hamburger } from '@/layout/components/index'
 import Notify from '@/components/Notify/index.vue'
+import ThemeSwitch from '@/components/ThemeSwitch/index.vue'
 import { useAppStore } from '@/stores/modules/app'
 import { UserFilled } from '@element-plus/icons-vue'
+import { useSettingsStore } from '@/stores/modules/settings'
+
 const appStore = useAppStore()
-const showNotify = ref(true)
+const settingsStore = useSettingsStore()
 const userStore = reactive({
     username: 'zhao'
 })
 const sidebar = computed(() => {
     return appStore.sidebar
+})
+const showThemeSwitch = computed(() => {
+    return settingsStore.showThemeSwitch
+})
+const showNotify = computed(() => {
+    return settingsStore.showNotify
 })
 const toggleSidebar = () => {
     appStore.toggleSidebar(false)
@@ -22,6 +31,7 @@ const logout = () => {}
         <Hamburger class="hamburger" :is-active="sidebar.opened" @toggle-click="toggleSidebar" />
         <Breadcrumb class="breadcrumb" />
         <div class="right-menu">
+            <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
             <Notify v-if="showNotify" class="right-menu-item" />
             <el-dropdown class="right-menu-item">
                 <div class="right-menu-avatar">
