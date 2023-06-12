@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 const Layout = () => import('@/layout/index.vue')
 
 /** 常驻路由 */
@@ -58,214 +58,6 @@ export const constantRoutes = [
                 path: 'index',
                 component: () => import('@/views/unocss/index.vue'),
                 name: 'UnoCSS',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss1',
-        component: Layout,
-        redirect: '/unocss1/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS1',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss2',
-        component: Layout,
-        redirect: '/unocss2/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS2',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss3',
-        component: Layout,
-        redirect: '/unocss3/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS3',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss4',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS4',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss5',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS5',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss6',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS6',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss7',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS7',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss8',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS8',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss9',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS9',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss10',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS10',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss11',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS11',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss12',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index12',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS12',
-                meta: {
-                    title: 'unocss',
-                    elIcon: 'Search'
-                }
-            }
-        ]
-    },
-    {
-        path: '/unocss13',
-        component: Layout,
-        redirect: '/unocss/index',
-        children: [
-            {
-                path: 'index',
-                component: () => import('@/views/dashboard/index.vue'),
-                name: 'UnoCSS13',
                 meta: {
                     title: 'unocss',
                     elIcon: 'Search'
@@ -351,8 +143,25 @@ export const asyncRoutes = [
     }
 ]
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history:
+        import.meta.env.VITE_ROUTER_HISTORY === 'hash'
+            ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
+            : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
     routes: constantRoutes
 })
-
+/** 重置路由 */
+export function resetRouter() {
+    // 注意：所有动态路由路由必须带有 Name 属性，否则可能会不能完全重置干净
+    try {
+        router.getRoutes().forEach(route => {
+            const { name, meta } = route
+            if (name && meta.roles?.length) {
+                router.hasRoute(name) && router.removeRoute(name)
+            }
+        })
+    } catch (error) {
+        // 强制刷新浏览器也行，只是交互体验不是很好
+        window.location.reload()
+    }
+}
 export default router

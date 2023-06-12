@@ -31,6 +31,7 @@ module.exports = {
                 ignores: ['index', '404']
             }
         ],
+        'no-unused-vars': [1],
         'no-debugger': [1]
     }
 }
