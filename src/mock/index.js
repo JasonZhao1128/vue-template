@@ -8,7 +8,7 @@ export default [
                 message: 'success',
                 data: {
                     username: 'Zhao',
-                    roles: []
+                    roles: ['admin']
                 }
             }
         }

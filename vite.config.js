@@ -41,8 +41,8 @@ export default configEnv => {
             }),
             viteMockServe({
                 mockPath: 'src/mock/',
-                localEnabled: true, // 开发打包开关
-                prodEnabled: true, // 生产打包开关 这样可以控制关闭mock的时候是否让mock打包到最终代码内
+                localEnabled: true, // 开发环境启用开关
+                prodEnabled: true, // 生产环境启用开关 这样可以控制关闭mock的时候是否让mock打包到最终代码内
                 injectCode: ` import { setupProdMockServer } from './mockProdServer'; setupProdMockServer(); ` // 生产需要mock时要加上
             })
         ],
@@ -71,7 +71,7 @@ export default configEnv => {
             //         ws: true,
             //         /** 是否允许跨域 */
             //         changeOrigin: true,
-            //         rewrite: path => path.replace('/^\/api', '')
+            //         rewrite: path => path.replace('/^/api', '')
             //     }
             // }
         },

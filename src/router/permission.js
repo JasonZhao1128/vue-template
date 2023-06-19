@@ -10,17 +10,22 @@ import 'nprogress/nprogress.css'
 NProgress.configure({ showSpinner: false })
 
 router.beforeEach((to, _from, next) => {
+    NProgress.start()
     const userStore = useUserStore()
     const permissionStore = usePermissionStore()
+    // 判断该用户是否登录
     if (userStore.userInfo.username) {
         if (to.path === '/login') {
-            next({ path: '/', replace: true })
+            // 如果已经登录，并准备进入 Login 页面，则重定向到主页
+            next('/')
+            NProgress.done()
         } else {
-            // 检查用户是否已获得其权限角色
+            // 检查用户是否重登录页跳转过来的
             if (userStore.roles.length === 0) {
                 try {
                     if (asyncRouteSettings.open) {
-                        const roles = userStore.roles
+                        const roles = userStore.userInfo.roles
+                        userStore.setRoles(roles)
                         // 根据角色生成可访问的 Routes（可访问路由 = 常驻路由 + 有访问权限的动态路由）
                         permissionStore.setRoutes(roles)
                     } else {
@@ -32,7 +37,6 @@ router.beforeEach((to, _from, next) => {
                     permissionStore.dynamicRoutes.forEach(route => {
                         router.addRoute(route)
                     })
-
                     // 确保添加路由已完成
                     // 设置 replace: true, 因此导航将不会留下历史记录
                     next({ ...to, replace: true })
@@ -55,6 +59,7 @@ router.beforeEach((to, _from, next) => {
         } else {
             // 其他没有访问权限的页面将被重定向到登录页面
             next('/login')
+            NProgress.done()
         }
     }
 })
