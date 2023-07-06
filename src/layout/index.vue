@@ -88,7 +88,7 @@ const handleClickOutside = () => {
 
 .sidebar-container {
     transition: width 0.28s;
-    width: var(--v3-sidebar-width) !important;
+    width: var(--v3-sidebar-width);
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -113,7 +113,7 @@ const handleClickOutside = () => {
         margin-left: var(--v3-sidebar-hide-width);
     }
     .sidebar-container {
-        width: var(--v3-sidebar-hide-width) !important;
+        width: var(--v3-sidebar-hide-width);
     }
     .fixed-header {
         width: calc(100% - var(--v3-sidebar-hide-width));
@@ -127,7 +127,7 @@ const handleClickOutside = () => {
     }
     .sidebar-container {
         transition: transform 0.28s;
-        width: var(--v3-sidebar-width) !important;
+        width: var(--v3-sidebar-width);
     }
     &.openSidebar {
         position: fixed;
