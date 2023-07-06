@@ -5,11 +5,10 @@ import App from './App.vue'
 import router from './router'
 import '@/router/permission'
 // css
+import '@unocss/reset/tailwind.css'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/index.scss'
-import 'normalize.css'
-import '@unocss/reset/normalize.css'
 import 'virtual:uno.css'
 // load
 import { loadSvg } from '@/icons'

@@ -102,21 +102,6 @@ const isCollapse = computed(() => {
     width: 100% !important;
 }
 
-:deep(.el-menu-item),
-:deep(.el-sub-menu__title),
-:deep(.el-sub-menu .el-menu-item) {
-    height: var(--v3-sidebar-menu-item-height);
-    line-height: var(--v3-sidebar-menu-item-height);
-    &.is-active,
-    &:hover {
-        background-color: var(--v3-sidebar-menu-hover-bg-color);
-    }
-    display: block;
-    * {
-        vertical-align: middle;
-    }
-}
-
 :deep(.el-menu-item) {
     &.is-active {
         @include tip-line;
