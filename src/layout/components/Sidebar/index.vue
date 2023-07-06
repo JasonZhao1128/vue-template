@@ -99,7 +99,7 @@ const isCollapse = computed(() => {
 .el-menu {
     border: none;
     min-height: 100%;
-    width: 100%;
+    width: 100% !important; // 加最高权限解决展开菜单白屏问题
 }
 
 :deep(.el-menu-item),
