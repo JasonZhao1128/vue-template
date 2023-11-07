@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 defineOptions({
-    name: 'Dashboard'
+    name: 'DashBoard'
 })
 const count = ref(0)
 const test = ref([])

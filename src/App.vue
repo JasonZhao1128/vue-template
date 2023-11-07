@@ -1,5 +1,5 @@
 <script setup>
-import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { useTheme } from '@/hooks/useTheme'
 import { RouterView } from 'vue-router'
 const { initTheme } = useTheme()
